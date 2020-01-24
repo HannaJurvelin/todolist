@@ -7,12 +7,52 @@ body {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: flex-start;
 }
 
 form {
     background-color: #FDFDFD;
     margin: 20px;
-    padding: 20px;
+    padding: 30px;
+    width: 400px;
+    height: 550px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 #DCDEE0;
+}
+
+p {
+    color: #7B8794;
+    font-size: 16px;
+}
+
+h1 {
+    margin: 0px;
+    color: #3E4C59;
+}
+
+input, textarea, select {
+    width: 400px;
+    height: 30px;
+    padding: 5px;
+    border: solid 2px #E4E7EB;
+    border-radius: 10px;
+    background-color: #F5F7FA;
+    color: #ADB5BE;
+    font-size: 16px;
+}
+
+button {
+    background-color: #2BB0ED;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+    color: #F0F0F0;
+    width: 400px;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #289ACE;
 }
