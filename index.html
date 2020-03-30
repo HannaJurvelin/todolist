@@ -12,32 +12,39 @@
 
 <body>
     <div class="formContainer">
-        <form class=form1>
+        <form id=taskForm>
             <h1>Submit task</h1>
             <p>Task title:</p>
-            <input type="text" name="title" value="Type title">
+            <input type="text" name="title" placeholder="Type title" id="taskTitle">
             <br>
             <p>Task info:</p>
-            <textarea name="info">Type task info</textarea>
+            <textarea name="info" id="taskInfo" placeholder="Type task info"></textarea>
             <br>
             <p>Select folder:</p>
-            <select name="folder">
+            <select name="folder" id="folder">
                 <option value="family">Family</option>
                 <option value="work">Work</option>
                 <option value="hobby">Hobby</option>
             </select><br>
             <p>Task deadline:</p>
-            <input type="date" name="deadlineDay">
+            <input type="date" name="deadlineDay" id="deadlineDay">
             <br><br>
-            <input type="time" name="deadlineTime">
+            <input type="time" name="deadlineTime" id="deadlineTime">
             <br>
-            <button>Add task</button>
+            <button onclick="addTask()">Add task</button>
         </form>
-        <form class=form2>
+        <div id=taskList>
             <h1>Task list</h1>
-        </form>
+            <h2>Family</h2>
+            <div id="family"></div>
+            <h2>Work</h2>
+            <div id="work"></div>
+            <h2>Hobby</h2>
+            <div id="hobby"></div>
+        </div>
     </div>
 
+<script src="script.js"></script>
 </body>
 
 </html>
