@@ -6,17 +6,22 @@ function addTask() {
     var d = document.getElementById("deadlineDay").value;
     var t = document.getElementById("deadlineTime").value;
     var idItem = document.getElementsByClassName("taskItem").length;
-    console.log(x,y);
 
-    if (x == "" && y == "") {
-        document.getElementById("taskTitle").style.borderColor = "#ff829b";
-        document.getElementById("taskInfo").style.borderColor = "#ff829b";
-        alert("All fields must be filled out");
+    if (x == "" || y == "") {
+        if (x == "") {
+            document.getElementById("taskTitle").style.borderColor = "#ff829b";
+            alert("Type something to task title");
+        }
+        if (y == "") { 
+            document.getElementById("taskInfo").style.borderColor = "#ff829b";
+            alert("Type something to task info");
+        }
         return false;
     }
     else {
         document.getElementById(z).innerHTML += 
         '<div class="taskItem" id=a' + idItem + '>' + 
+            '<label for="remove"> Remove </label>'+
             '<input type="checkbox" name="taskListItem" onclick="checkCheckbox(' + idItem + ')" id=' + idItem + '></input>'+
             '<h4>' +
                 x + 
@@ -41,3 +46,10 @@ function checkCheckbox(idItem) {
         elem.parentNode.removeChild(elem);
 }
   }
+
+var date = new Date();
+var currentDate = date.toISOString().slice(0,10);
+var currentTime = date.getHours() + ':' + date.getMinutes();
+
+document.getElementById('deadlineDay').value = currentDate;
+document.getElementById('deadlineTime').value = currentTime;
