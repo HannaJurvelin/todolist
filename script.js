@@ -41,23 +41,27 @@ function addTask() {
 }
 
 function createNew(x, y, z, d, t, idItem) {
-    document.getElementById(z).innerHTML += 
+    element =
     '<div class="taskItem" id=a' + idItem + '>' + 
-        '<label for="remove"> Remove </label>'+
-        '<input type="checkbox" name="taskListItem" onclick="checkCheckbox(' + idItem + ')" id=' + idItem + '></input>'+
-        '<h4>' +
-            x + 
-        '</h4>' + 
-        '<p>' + 
-            y + 
-        '</p>' + 
-        '<p>' + 
-            d + 
-        '</p>' + 
-        '<p>' + 
-            t + 
-        '</p>' + 
+        '<input class="removeItem" type="checkbox" name="taskListItem" onclick="checkCheckbox(' + idItem + ')" id=' + idItem + '></input>'+
+        '<label for="remove" class="removeItem"> Remove </label>'+
+        '<div class="itemContent">'   + 
+            '<h4>' +
+                x + 
+            '</h4>' + 
+            '<p>' + 
+                y + 
+            '</p>' + 
+            '<p>' + 
+                d + 
+            '</p>' + 
+            '<p>' + 
+                t + 
+            '</p>' + 
+        '</div>'+
     '</div>';
+    document.getElementById(z).innerHTML += element;
+    
 }
 
 function checkCheckbox(idItem) {
