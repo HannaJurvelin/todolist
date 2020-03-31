@@ -95,3 +95,7 @@ button:hover {
     border: solid 2px #dedede;
     border-radius: 5px;
 }
+
+.tasks{
+    display: none;
+}

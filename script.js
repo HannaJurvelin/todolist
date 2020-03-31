@@ -20,6 +20,9 @@ function addTask() {
     }
     else {
         createNew(x, y, z, d, t, idItem)
+        if (document.getElementById(z).style.display == "") {
+            document.getElementById(z).style.display = 'block'
+        }
     }
     var tasks = JSON.parse(localStorage.getItem("tasks"));
 
@@ -61,6 +64,7 @@ function checkCheckbox(idItem) {
     if (document.getElementById(idItem).checked) {
         var elem = document.getElementById('a' + idItem);
         elem.parentNode.removeChild(elem);
+
         var tasks = JSON.parse(localStorage.getItem("tasks"));
         var updatedList = []
         for(i = 0; i < tasks.length; i++) {
@@ -68,7 +72,6 @@ function checkCheckbox(idItem) {
                 updatedList.push(tasks[i])
             }
         }
-
         localStorage.setItem("tasks", JSON.stringify(updatedList));   
     }
 }
@@ -83,4 +86,10 @@ document.getElementById('deadlineTime').value = currentTime;
 var tasks = JSON.parse(localStorage.getItem("tasks"));
 for (i = 0; i < tasks.length; i++) {
     createNew(tasks[i].taskTitle, tasks[i].taskInfo, tasks[i].folder, tasks[i].deadlineDay, tasks[i].deadlineTime, tasks[i].idItem) 
+}
+
+for (i = 0; i < document.getElementsByClassName('tasks').length; i++) {
+    if (document.getElementsByClassName('tasks')[i].children.length) {
+        document.getElementsByClassName('tasks')[i].style.display = 'block';
+    }
 }
