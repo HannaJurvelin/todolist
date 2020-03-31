@@ -19,33 +19,59 @@ function addTask() {
         return false;
     }
     else {
-        document.getElementById(z).innerHTML += 
-        '<div class="taskItem" id=a' + idItem + '>' + 
-            '<label for="remove"> Remove </label>'+
-            '<input type="checkbox" name="taskListItem" onclick="checkCheckbox(' + idItem + ')" id=' + idItem + '></input>'+
-            '<h4>' +
-                x + 
-            '</h4>' + 
-            '<p>' + 
-                y + 
-            '</p>' + 
-            '<p>' + 
-                d + 
-            '</p>' + 
-            '<p>' + 
-                t + 
-            '</p>' + 
-        '</div>';
+        createNew(x, y, z, d, t, idItem)
     }
+    var tasks = JSON.parse(localStorage.getItem("tasks"));
+
+    let task = {
+        taskTitle: x,
+        taskInfo: y,
+        folder: z,
+        deadlineDay: d,
+        deadlineTime: t,
+        idItem: idItem
+    }
+
+    tasks.push(task);
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));   
+}
+
+function createNew(x, y, z, d, t, idItem) {
+    document.getElementById(z).innerHTML += 
+    '<div class="taskItem" id=a' + idItem + '>' + 
+        '<label for="remove"> Remove </label>'+
+        '<input type="checkbox" name="taskListItem" onclick="checkCheckbox(' + idItem + ')" id=' + idItem + '></input>'+
+        '<h4>' +
+            x + 
+        '</h4>' + 
+        '<p>' + 
+            y + 
+        '</p>' + 
+        '<p>' + 
+            d + 
+        '</p>' + 
+        '<p>' + 
+            t + 
+        '</p>' + 
+    '</div>';
 }
 
 function checkCheckbox(idItem) {
-    if (document.getElementById(idItem).checked) 
-    {
-        var elem = document.getElementById('a'+idItem);
+    if (document.getElementById(idItem).checked) {
+        var elem = document.getElementById('a' + idItem);
         elem.parentNode.removeChild(elem);
+        var tasks = JSON.parse(localStorage.getItem("tasks"));
+        var updatedList = []
+        for(i = 0; i < tasks.length; i++) {
+            if (!tasks[i].idItem == idItem){
+                updatedList.push(tasks[i])
+            }
+        }
+
+        localStorage.setItem("tasks", JSON.stringify(updatedList));   
+    }
 }
-  }
 
 var date = new Date();
 var currentDate = date.toISOString().slice(0,10);
@@ -53,3 +79,8 @@ var currentTime = date.getHours() + ':' + date.getMinutes();
 
 document.getElementById('deadlineDay').value = currentDate;
 document.getElementById('deadlineTime').value = currentTime;
+
+var tasks = JSON.parse(localStorage.getItem("tasks"));
+for (i = 0; i < tasks.length; i++) {
+    createNew(tasks[i].taskTitle, tasks[i].taskInfo, tasks[i].folder, tasks[i].deadlineDay, tasks[i].deadlineTime, tasks[i].idItem) 
+}
